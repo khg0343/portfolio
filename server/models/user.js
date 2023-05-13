@@ -11,13 +11,13 @@ const UserSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  icon: {
-    type: String,
-    default: "",
-  },
   password: {
     type: String,
     required: true,
+  },
+  iconUrl: {
+    type: String,
+    default: "https://cdn-icons-png.flaticon.com/512/6378/6378141.png",
   },
   role: {
     type: String,
