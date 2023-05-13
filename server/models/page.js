@@ -7,12 +7,13 @@ const PageSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
-  icon: {
+  iconUrl: {
     type: String,
     default: "",
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
+    required: true,
     ref: "user",
   },
   tags: [

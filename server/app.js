@@ -6,6 +6,9 @@ import helmet from "helmet";
 import cors from "cors";
 import morgan from "morgan";
 
+//Routes
+import pageRoutes from "./routes/api/page";
+
 const app = express();
 const { MONGO_URI } = config;
 
@@ -24,5 +27,6 @@ mongoose
   .catch((e) => console.log(e));
 
 app.get("/");
+app.use("/api/page", pageRoutes);
 
 export default app;
