@@ -6,23 +6,28 @@ const router = express.Router();
 
 //get pages
 router.get("/", async (req, res) => {
-  const pages = await Page.find();
-  console.log(pages, "Get All Page");
-  res.json(pages);
+  try {
+    const pages = await Page.find();
+    console.log(pages, "Get All Page");
+    res.status(200).json(pages);
+  } catch (e) {
+    console.log(e);
+    res.status(400).json({ msg: e.msg });
+  }
 });
 
 //post page
 router.post("/", async (req, res, next) => {
   try {
-    console.log(req, "req");
     const { title, content } = req.body;
     const newPage = await Page.create({
       title,
       content,
     });
-    res.json(newPage);
+    res.status(200).json(newPage);
   } catch (e) {
     console.log(e);
+    res.status(400).json({ msg: e.msg });
   }
 });
 

@@ -7,9 +7,13 @@ const PageSchema = new mongoose.Schema({
     required: true,
     index: true,
   },
+  content: {
+    type: String,
+    required: true,
+  },
   iconUrl: {
     type: String,
-    default: "https://cdn-icons-png.flaticon.com/512/6378/6378141.png",
+    default: "https://cdn-icons-png.flaticon.com/512/263/263103.png",
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
@@ -21,13 +25,9 @@ const PageSchema = new mongoose.Schema({
       ref: "tag",
     },
   ],
-  lastEditDate: {
+  last_edit_date: {
     type: String,
     default: moment().format("YYYY-MM-DD"),
-  },
-  content: {
-    type: String,
-    required: true,
   },
   comments: [
     {
