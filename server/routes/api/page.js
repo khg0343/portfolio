@@ -15,10 +15,9 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res, next) => {
   try {
     console.log(req, "req");
-    const { title, creator, content } = req.body;
+    const { title, content } = req.body;
     const newPage = await Page.create({
       title,
-      creator,
       content,
     });
     res.json(newPage);

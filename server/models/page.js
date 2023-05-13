@@ -9,11 +9,10 @@ const PageSchema = new mongoose.Schema({
   },
   iconUrl: {
     type: String,
-    default: "",
+    default: "https://cdn-icons-png.flaticon.com/512/6378/6378141.png",
   },
   creator: {
     type: mongoose.Schema.Types.ObjectId,
-    required: true,
     ref: "user",
   },
   tags: [
