@@ -1,28 +1,15 @@
-import { createStore, compose, applyMiddleware } from "redux";
-import createSagaMiddleware from "redux-saga";
-import { createBrowserHistory } from "history";
-import { routerMiddleware } from "connected-react-router";
+import { configureStore } from "@reduxjs/toolkit";
 
-import createRootReducer from "./redux/reducers/index";
-import rootSaga from "./redux/sagas";
+//import { listenerMiddleware } from "./listenerMiddleware";
 
-export const history = createBrowserHistory();
+import { apiSlice } from "./slices/apiSlice";
+import counterReducer from "./slices/counterSlice";
 
-const sagaMiddleware = createSagaMiddleware();
-
-const initialState = {};
-
-const middlewares = [sagaMiddleware, routerMiddleware(history)];
-const devtools = window.__REDUX_DEVTOOLS_EXTENSIONS_COMPOSE__;
-
-const composeEnhancer =
-  process.env.NODE_ENV === "production" ? compose : devtools || compose;
-
-const store = createStore(
-  createRootReducer(history),
-  initialState,
-  composeEnhancer(applyMiddleware(...middlewares))
-);
-sagaMiddleware.run(rootSaga);
-
-export default store;
+// Automatically adds the thunk middleware and the Redux DevTools extension
+export default configureStore({
+  reducer: {
+    [apiSlice.reducerPath]: apiSlice.reducer,
+    counter: counterReducer,
+  },
+  // middleware: (getDefaultMiddleware) =>   getDefaultMiddleware.prepend(listenerMiddleware.middleware),
+});
