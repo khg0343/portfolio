@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import {
+  Alert,
   NavLink,
   Modal,
   ModalHeader,
@@ -11,19 +12,28 @@ import {
   Button,
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import authSlice from "../../slices/authSlice";
-const { loginRequest, clearErrorRequest } = authSlice;
+import { loginRequest, clearErrorRequest } from "../../slices/authSlice";
 
 const LoginModal = () => {
   const [modal, setModal] = useState(false);
+  const [localMsg, setLocalMsg] = useState("");
   const [form, setValues] = useState({
     email: "",
     password: "",
   });
   const dispatch = useDispatch();
+  const { errorMsg } = useSelector((state) => state.auth);
+
+  useEffect(() => {
+    try {
+      setLocalMsg(errorMsg);
+    } catch (e) {
+      console.log(e);
+    }
+  }, [errorMsg]);
 
   const handleToggle = () => {
-    // dispatch(clearErrorRequest);
+    dispatch(clearErrorRequest());
     setModal(!modal);
   };
 
@@ -39,7 +49,7 @@ const LoginModal = () => {
     const { email, password } = form;
     const user = { email, password };
     console.log(user);
-    //dispatch(loginRequest);
+    dispatch(loginRequest(user));
   };
 
   return (
@@ -50,6 +60,7 @@ const LoginModal = () => {
       <Modal isOpen={modal} toggle={handleToggle}>
         <ModalHeader toggle={handleToggle}>Login</ModalHeader>
         <ModalBody>
+          {localMsg ? <Alert color="danger">{localMsg}</Alert> : null}
           <Form onSubmit={onSubmit}>
             <FormGroup>
               <Label for="email">Email</Label>
