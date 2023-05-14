@@ -1,6 +1,7 @@
 import express from "express";
 
 import Page from "../../models/page";
+import Auth from "../../middleware/auth";
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
 });
 
 //post page
-router.post("/", async (req, res, next) => {
+router.post("/", Auth, async (req, res, next) => {
   try {
     const { title, content } = req.body;
     const newPage = await Page.create({
