@@ -12,7 +12,7 @@ import {
   Button,
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { loginRequest, clearErrorRequest } from "../../slices/authSlice";
+import { sagaActions } from "../../redux/sagas/sagaActions";
 
 const LoginModal = () => {
   const [modal, setModal] = useState(false);
@@ -33,7 +33,7 @@ const LoginModal = () => {
   }, [errorMsg]);
 
   const handleToggle = () => {
-    dispatch(clearErrorRequest());
+    dispatch({ type: sagaActions.CLEAR_ERROR_REQUEST });
     setModal(!modal);
   };
 
@@ -49,7 +49,7 @@ const LoginModal = () => {
     const { email, password } = form;
     const user = { email, password };
     console.log(user);
-    dispatch(loginRequest(user));
+    dispatch({ type: sagaActions.LOGIN_REQUEST, payload: user });
   };
 
   return (

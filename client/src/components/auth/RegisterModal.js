@@ -12,7 +12,7 @@ import {
   Button,
 } from "reactstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { registerRequest, clearErrorRequest } from "../../slices/authSlice";
+import { sagaActions } from "../../redux/sagas/sagaActions";
 
 const RegisterModal = () => {
   const [modal, setModal] = useState(false);
@@ -26,7 +26,8 @@ const RegisterModal = () => {
   const { errorMsg } = useSelector((state) => state.auth);
 
   const handleToggle = () => {
-    dispatch(clearErrorRequest());
+    dispatch({ type: sagaActions.CLEAR_ERROR_REQUEST });
+    //dispatch(clearErrorRequest());
     setModal(!modal);
   };
 
@@ -50,7 +51,7 @@ const RegisterModal = () => {
     const { name, email, password } = form;
     const user = { name, email, password };
     console.log(user);
-    dispatch(registerRequest(user));
+    dispatch({ type: sagaActions.REGISTER_REQUEST, payload: user });
   };
 
   return (
