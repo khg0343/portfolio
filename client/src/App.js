@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import AppNavbar from "./components/AppNavbar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/custom.scss";
@@ -13,6 +14,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <BrowserRouter>
+        <AppNavbar />
         <Header />
         <h1>Hello Body</h1>
         {/* <Routes></Routes> */}
