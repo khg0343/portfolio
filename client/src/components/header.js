@@ -15,7 +15,7 @@ const Header = () => {
       <Row>
         {/* <Col>icon</Col> */}
         <Col className="m-2" xs="auto">
-          <Row clasName="m-2">
+          <Row className="m-2">
             <Button variant="" startIcon={<AccountBoxIcon />}>
               김 현 지 Hyeonji Kim
             </Button>
