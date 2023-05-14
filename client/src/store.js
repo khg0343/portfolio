@@ -1,15 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-//import { listenerMiddleware } from "./listenerMiddleware";
-
-import { apiSlice } from "./slices/apiSlice";
-import counterReducer from "./slices/counterSlice";
+import logger from "redux-logger";
+import authSlice from "./slices/authSlice";
 
 // Automatically adds the thunk middleware and the Redux DevTools extension
 export default configureStore({
   reducer: {
-    [apiSlice.reducerPath]: apiSlice.reducer,
-    counter: counterReducer,
+    auth: authSlice.reducer,
   },
-  // middleware: (getDefaultMiddleware) =>   getDefaultMiddleware.prepend(listenerMiddleware.middleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
