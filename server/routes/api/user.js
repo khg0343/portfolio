@@ -21,4 +21,45 @@ router.get("/", async (req, res) => {
   }
 });
 
+//register user
+router.post("/", async (req, res) => {
+  const { name, email, password } = req.body;
+  if (!name || !email || !password) {
+    return res.status(400).json({ msg: "please fill out the required fields" });
+  }
+
+  const user = await User.findOne({ email });
+  if (user) return res.status(400).json({ msg: "Already Registered" });
+  const newUser = await User.create({
+    name,
+    email,
+    password,
+  });
+
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUser.password = hash;
+      newUser.save().then((user) => {
+        jwt.sign(
+          { id: user.id },
+          JWT_SECRET,
+          { expiresIn: 3600 },
+          (err, token) => {
+            if (err) throw err;
+            res.json({
+              token,
+              user: {
+                id: user.id,
+                name: user.name,
+                email: user.email,
+              },
+            });
+          }
+        );
+      });
+    });
+  });
+});
+
 export default router;
