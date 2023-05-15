@@ -9,6 +9,9 @@ import AppNavbar from "./components/AppNavbar";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./assets/custom.scss";
+import { Container } from "reactstrap";
+import PageList from "./routes/publicRoute/PageList";
+import PageDetail from "./routes/publicRoute/PageDetail";
 
 const App = () => {
   return (
@@ -16,8 +19,12 @@ const App = () => {
       <BrowserRouter>
         <AppNavbar />
         <Header />
-        <h1>Hello Body</h1>
-        {/* <Routes></Routes> */}
+        <Container id="main-body">
+          <Routes>
+            <Route path="/" exact component={PageList} />
+            <Route path="/page/:id" exact component={PageDetail} />
+          </Routes>
+        </Container>
         <Footer />
       </BrowserRouter>
     </Provider>

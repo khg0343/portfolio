@@ -6,7 +6,7 @@ const Footer = () => {
   const todayView = 2;
 
   return (
-    <div id="main-footer" className="text-center p-2">
+    <div id="main-footer" className="text-center sticky-bottom p-0">
       <Row>
         <Col>
           <p>김 현 지 Hyeonji Kim</p>

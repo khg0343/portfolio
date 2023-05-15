@@ -1,12 +1,23 @@
-#main-footer {
-  background: #343a40;
-  color: #ffffff;
-}
-
-#page-header {
+#main-header {
   height: 40px;
   background: #ffffff;
   color: #343a40;
+}
+
+#main-footer {
+  background: #343a40;
+  bottom: 0;
+  color: #ffffff;
+}
+
+#main-body {
+  height: auto;
+}
+
+#app-nav-bar {
+  height: 40px;
+  color: #4b4944;
+  background: #f7f7f5;
 }
 
 .header-text {

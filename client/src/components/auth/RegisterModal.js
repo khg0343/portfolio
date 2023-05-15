@@ -56,7 +56,7 @@ const RegisterModal = () => {
 
   return (
     <div>
-      <NavLink onClick={handleToggle} href="#">
+      <NavLink onClick={handleToggle} href="#" className="p-1">
         Register
       </NavLink>
       <Modal isOpen={modal} toggle={handleToggle}>

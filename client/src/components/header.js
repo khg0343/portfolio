@@ -11,24 +11,28 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 const Header = () => {
   const lastEditDate = 16;
   return (
-    <div id="page-header" className="mb-3">
+    <div id="main-header" className="mb-3">
       <Row>
         {/* <Col>icon</Col> */}
-        <Col className="m-2" xs="auto">
-          <Row className="m-2">
+        <Col className="p-1" xs="auto">
+          <Row className="px-2 m-1">
             <Button variant="" startIcon={<AccountBoxIcon />}>
               김 현 지 Hyeonji Kim
             </Button>
           </Row>
         </Col>
-        <Col></Col>
-        <Col className="m-2" xs="auto">
-          <Row>
+        <Col className="p-1" />
+        <Col className="p-1" xs="auto">
+          <Row className="px-3 m-1">
             <Col className="header-textbtn">
-              <Button variant="text">{lastEditDate}시간 전 편집</Button>
+              <Button variant="text" disabled="false">
+                {lastEditDate}시간 전 편집
+              </Button>
             </Col>
             <Col className="header-textbtn">
-              <Button variant="text">공유</Button>
+              <Button variant="text" color="success">
+                공유
+              </Button>
             </Col>
             <Col className="header-iconbtn">
               <IconButton aria-label="comment" size="small">
